@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:floater/floater.dart';
-import 'package:store_management/sdk/proxy/lineItem.dart';
+import 'package:store_management/sdk/proxies/lineItem.dart';
 
 class LineItemTile extends StatelessWidgetBase {
   final LineItem lineItem;

@@ -1,5 +1,5 @@
 import 'package:floater/floater.dart';
-import 'package:store_management/sdk/proxy/lineItem.dart';
+import 'package:store_management/sdk/proxies/lineItem.dart';
 
 import '../routes.dart';
 import 'invoice.dart';

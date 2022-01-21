@@ -1,9 +1,8 @@
-import 'package:store_management/sdk/proxy/lineItem_dto.dart';
+import 'invoice_dto.dart';
+import 'lineItem_dto.dart';
 
-class InvoiceDto {
-  final date = DateTime.now();
-  List<LineItemDto> lineItems = [];
-
+class InvoiceProxy {
+  final lineItems = InvoiceDto().lineItems;
   void addItem(String productName, double quantity, double mrp) {
     final lineItem =
         LineItemDto(productName: productName, quantity: quantity, mrp: mrp);

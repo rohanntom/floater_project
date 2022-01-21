@@ -1,7 +1,7 @@
 import 'package:floater/floater.dart';
 import 'package:store_management/events/lineItem_added_event.dart';
-import 'package:store_management/sdk/proxy/lineItem.dart';
-import 'package:store_management/sdk/proxy/lineItem_dto.dart';
+import 'package:store_management/sdk/proxies/lineItem.dart';
+import 'package:store_management/sdk/proxies/lineItem_dto.dart';
 
 import 'lineItem_service.dart';
 
@@ -9,22 +9,22 @@ class MockLineItemService implements LineItemService {
   final _eventAggregator = ServiceLocator.instance.resolve<EventAggregator>();
   List<LineItem> _invoice = [];
 
-  MockLineItemService() {
-    this._invoice = List.generate(
-        5,
-        (index) => LineItemDto(
-              productName: "Product number ${index + 1}",
-              quantity: index + 1,
-              mrp: index + 10,
-            ));
-  }
+  // MockLineItemService() {
+  //   this._invoice = List.generate(
+  //       5,
+  //       (index) => LineItemDto(
+  //             productName: "Product number ${index + 1}",
+  //             quantity: index + 1,
+  //             mrp: index + 10,
+  //           ));
+  // }
 
   @override
   Future<void> createLineItem(
       String productName, double quantity, double mrp) async {
     given(productName, "productName").ensure((t) => t.isNotEmptyOrWhiteSpace);
-    given(quantity, "quantity").ensure((t) => t != null);
-    given(mrp, "mrp").ensure((t) => t != null);
+    given(quantity, "quantity").ensure((t) => t > 0);
+    given(mrp, "mrp").ensure((t) => t > 0);
 
     // fake network delay
     await Future.delayed(Duration(seconds: 1));

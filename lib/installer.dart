@@ -1,8 +1,7 @@
 import 'package:floater/floater.dart';
-import 'package:store_management/sdk/service/lineItem_management_service.dart';
-import 'package:store_management/sdk/service/lineItem_service.dart';
-
-import 'sdk/service/mock_lineItem_service.dart';
+import 'package:store_management/service/lineItem_management_service.dart';
+import 'sdk/services/lineItem_service.dart';
+import 'sdk/services/mock_lineItem_service.dart';
 
 class Installer extends ServiceInstaller {
   @override

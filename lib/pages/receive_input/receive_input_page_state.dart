@@ -1,6 +1,6 @@
 import 'dart:ffi';
 import 'package:floater/floater.dart';
-import 'package:store_management/sdk/service/lineItem_management_service.dart';
+import 'package:store_management/service/lineItem_management_service.dart';
 
 import '../routes.dart';
 import 'receive_input_page.dart';

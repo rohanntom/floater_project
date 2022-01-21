@@ -1,7 +1,6 @@
-import 'dart:ffi';
 import 'package:floater/floater.dart';
-import 'package:store_management/sdk/proxy/lineItem_dto.dart';
-import 'package:store_management/sdk/service/lineItem_service.dart';
+import 'package:store_management/sdk/proxies/lineItem_dto.dart';
+import 'package:store_management/sdk/services/lineItem_service.dart';
 
 class LineItemManagementService {
   final _lineItemService = ServiceLocator.instance.resolve<LineItemService>();
@@ -35,13 +34,13 @@ class LineItemManagementService {
   }
 
   void setQuantity(double quantity) {
-    given(quantity, "quantity").ensure((t) => t == null);
+    given(quantity, "quantity").ensure((t) => t > 0);
 
     this._quantity = quantity;
   }
 
   void setMRP(double mrp) {
-    given(mrp, "MRP").ensure((t) => t == null);
+    given(mrp, "MRP").ensure((t) => t > 0);
 
     this._mrp = mrp;
   }
