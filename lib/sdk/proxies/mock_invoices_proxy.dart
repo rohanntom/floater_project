@@ -27,13 +27,6 @@ class MockInvoicesProxy implements Invoice {
   }
 
   @override
-  Future<void> toggleComplete() async {
-    await Future.delayed(Duration(seconds: 1));
-
-    final newDto = InvoiceDto(this.lineItems);
-    this._dto = newDto;
-  }
-
   factory MockInvoicesProxy.create(InvoiceDto dto) {
     return MockInvoicesProxy(dto);
   }
