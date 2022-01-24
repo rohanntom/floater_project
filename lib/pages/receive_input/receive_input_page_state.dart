@@ -1,6 +1,6 @@
 import 'dart:ffi';
 import 'package:floater/floater.dart';
-import 'package:store_management/service/lineItem_management_service.dart';
+import 'package:store_management/service/invoice_management_service.dart';
 
 import '../routes.dart';
 import 'receive_input_page.dart';
@@ -8,7 +8,7 @@ import 'receive_input_page.dart';
 class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
   final _lineItem = NavigationService.instance
       .retrieveScope(Routes.manageInvoicePage)
-      .resolve<LineItemManagementService>();
+      .resolve<InvoiceManagementService>();
   final _navigator = NavigationService.instance.retrieveNavigator("/");
 
   late String _productName;
@@ -97,7 +97,7 @@ class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
 
     this
         ._validatorForQuantity
-        .prop("Quantity", (t) => t.quantity)
+        .prop("quantity", (t) => t.quantity)
         .isRequired()
         .withMessage(message: "Quantity name required");
   }

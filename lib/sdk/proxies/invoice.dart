@@ -1,6 +1,8 @@
-import 'package:store_management/sdk/proxies/lineItem_dto.dart';
-
 abstract class Invoice {
-  DateTime get date;
-  List<LineItemDto> get lineItems;
+  String get id;
+  List get lineItems;
+
+  Future<void> addLineItem(String productName, double quantity, double mrp);
+  Future<double> calcTotalAmount();
+  Future<double> calcTotalTax();
 }

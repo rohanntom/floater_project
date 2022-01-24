@@ -1,7 +1,7 @@
 class LineItemDto {
-  final String productName;
-  final double quantity;
-  final double mrp;
+  String productName;
+  double quantity;
+  double mrp;
 
   double get amount {
     return this.mrp * this.quantity * 0.18;
@@ -11,6 +11,5 @@ class LineItemDto {
     return this.mrp * 0.18;
   }
 
-  LineItemDto(
-      {required this.productName, required this.quantity, required this.mrp});
+  LineItemDto(this.productName, this.quantity, this.mrp);
 }

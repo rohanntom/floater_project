@@ -1,20 +1,15 @@
 import 'package:floater/floater.dart';
-import 'package:store_management/service/lineItem_management_service.dart';
-import 'sdk/services/lineItem_service.dart';
-import 'sdk/services/mock_lineItem_service.dart';
+import 'package:store_management/sdk/proxies/mock_invoices_proxy.dart';
+import 'package:store_management/sdk/services/invoice_service.dart';
+import 'package:store_management/sdk/services/mock_invoice_service.dart';
+import 'package:store_management/service/invoice_management_service.dart';
 
 class Installer extends ServiceInstaller {
   @override
   void install(ServiceRegistry registry) {
-    // Network Services
-    // you can change the MockTodoService with RemoteTodoService (which makes the call to an api) without changing any part of your code.
-    // it is a Singleton, so there will be only one instance of TodoService through out the lifecycle if the app.
-    registry.registerSingleton<LineItemService>(() => MockLineItemService());
+    registry.registerSingleton<InvoiceService>(() => MockInvoiceService());
 
-    // ui Services
-    // services that facilitate clean communication between pages and/or widgets
-    // these services are usually scoped
-    registry.registerScoped<LineItemManagementService>(
-        () => LineItemManagementService());
+    registry.registerScoped<InvoiceManagementService>(
+        () => InvoiceManagementService());
   }
 }

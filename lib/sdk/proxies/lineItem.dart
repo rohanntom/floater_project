@@ -4,6 +4,4 @@ abstract class LineItem {
   double get mrp;
   double get amount;
   double get tax;
-
-  //Future<void> update(String title, String? description);
 }
