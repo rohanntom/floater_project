@@ -1,19 +1,19 @@
 import 'package:floater/floater.dart';
-import 'package:store_management/sdk/proxies/invoice.dart';
+import 'package:store_management/sdk/proxies/invoice/invoice.dart';
 
 class InvoiceManagementService {
   final _invoice = ServiceLocator.instance.resolve<Invoice>();
 
   // InvoiceDto? _invoiceDto;
 
-  String? _productName;
-  String? get productName => this._productName;
+  late String _productName;
+  String get productName => this._productName;
 
-  double? _quantity;
-  double? get quantity => this._quantity;
+  late double _quantity;
+  double get quantity => this._quantity;
 
-  double? _mrp;
-  double? get mrp => this._mrp;
+  late double _mrp;
+  double get mrp => this._mrp;
 
   // Future<void> init() async {
   //   this._productName = this._invoiceDto!.lineItems.productName;
@@ -41,11 +41,7 @@ class InvoiceManagementService {
   }
 
   Future<void> complete() async {
-    given(this, "this").ensure((t) => t._productName != null);
-    await this
-        ._invoice
-        .addLineItem(this._productName!, this.quantity!, this.mrp!);
+    await this._invoice.addLineItem(this._productName, this.quantity, this.mrp);
     return;
-    //await this._lineItem!.update(this._productName!, this._quantity);
   }
 }

@@ -16,8 +16,8 @@ class SplashPageState extends WidgetStateBase<SplashPage> {
     // can check authentication status here to redirect to login screen or home page, etc
     // or to fetch data from server, or execute any startup logic.
 
-    await Future.delayed(Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 2));
 
-    this._navigator.pushReplacementNamed(Routes.home);
+    await this._navigator.pushReplacementNamed(Routes.home);
   }
 }

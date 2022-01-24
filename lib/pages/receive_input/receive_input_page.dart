@@ -1,18 +1,17 @@
-import 'dart:ffi';
 import 'package:flutter/material.dart';
 import 'package:floater/floater.dart';
 import 'receive_input_page_state.dart';
 
 class ReceiveInputPage extends StatefulWidgetBase<ReceiveInputPageState> {
-  ReceiveInputPage() : super(() => ReceiveInputPageState());
+  ReceiveInputPage() : super(ReceiveInputPageState.new);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("New LineItem"),
+        title: const Text("New LineItem"),
         leading: IconButton(
-          icon: Icon(Icons.chevron_left),
+          icon: const Icon(Icons.chevron_left),
           onPressed: this.state.back,
         ),
       ),
@@ -27,50 +26,41 @@ class ReceiveInputPage extends StatefulWidgetBase<ReceiveInputPageState> {
                 onChanged: (v) => this.state.productName = v,
                 decoration: InputDecoration(
                   labelText: "Product Name",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
-                  errorText: this
-                      .state
-                      .errorsForProductName
-                      .getError("product name required"),
+                  errorText:
+                      this.state.errors.getError("product name required"),
                 ),
               ),
               TextFormField(
                 initialValue: this.state.quantity as String,
-                onChanged: (v) => this.state.quantity = v as Double,
+                onChanged: (v) => this.state.quantity = v as double,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: "Quantity",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
-                  errorText: this
-                      .state
-                      .errorsForQuantity
-                      .getError("quantity required"),
+                  errorText: this.state.errors.getError("quantity required"),
                 ),
               ),
               TextFormField(
                 initialValue: this.state.mrp as String,
-                onChanged: (v) => this.state.mrp = v as Double,
+                onChanged: (v) => this.state.mrp = v as double,
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: "MRP",
-                  border: OutlineInputBorder(
+                  border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
-                  errorText: this.state.errorsForMRP.getError("mrp required"),
+                  errorText: this.state.errors.getError("mrp required"),
                 ),
               ),
-              SizedBox(height: 30),
+              const SizedBox(height: 30),
               ElevatedButton(
-                onPressed: (this.state.hasErrorsForProductName ||
-                        this.state.hasErrorsForQuantity ||
-                        this.state.hasErrorsForMRP)
-                    ? null
-                    : this.state.submit,
-                child: Text("Done"),
+                onPressed: (this.state.hasErrors) ? null : this.state.submit,
+                child: const Text("Done"),
               ),
             ],
           ),

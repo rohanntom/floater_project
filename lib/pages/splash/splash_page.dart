@@ -3,14 +3,14 @@ import 'package:floater/floater.dart';
 import 'splash_page_state.dart';
 
 class SplashPage extends StatefulWidgetBase<SplashPageState> {
-  SplashPage() : super(() => SplashPageState());
+  SplashPage() : super(SplashPageState.new);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
         child: Column(
           children: <Widget>[
-            Expanded(
+            const Expanded(
               child: Center(
                 child: Icon(
                   Icons.store_outlined,
@@ -22,7 +22,7 @@ class SplashPage extends StatefulWidgetBase<SplashPageState> {
               "Store Management App",
               style: Theme.of(context).textTheme.headline6,
             ),
-            SizedBox(height: 16)
+            const SizedBox(height: 16)
           ],
         ),
       ),

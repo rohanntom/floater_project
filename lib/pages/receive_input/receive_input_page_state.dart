@@ -1,6 +1,5 @@
-import 'dart:ffi';
 import 'package:floater/floater.dart';
-import 'package:store_management/service/invoice_management_service.dart';
+import 'package:store_management/pages/manage_invoice/service/invoice_management_service.dart';
 
 import '../routes.dart';
 import 'receive_input_page.dart';
@@ -16,41 +15,23 @@ class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
   set productName(String value) =>
       (this.._productName = value).triggerStateChange();
 
-  late Double _quantity;
-  Double get quantity => this._quantity;
-  set quantity(Double value) => (this.._quantity = value).triggerStateChange();
+  late double _quantity;
+  double get quantity => this._quantity;
+  set quantity(double value) => (this.._quantity = value).triggerStateChange();
 
-  late Double _mrp;
-  Double get mrp => this._mrp;
-  set mrp(Double value) => (this.._mrp = value).triggerStateChange();
+  late double _mrp;
+  double get mrp => this._mrp;
+  set mrp(double value) => (this.._mrp = value).triggerStateChange();
 
-  late Validator<ReceiveInputPageState> _validatorForProductName;
-  bool get hasErrorsForProductName => this._validatorForProductName.hasErrors;
-  ValidationErrors get errorsForProductName =>
-      this._validatorForProductName.errors;
-
-  late Validator<ReceiveInputPageState> _validatorForQuantity;
-  bool get hasErrorsForQuantity => this._validatorForQuantity.hasErrors;
-  ValidationErrors get errorsForQuantity => this._validatorForQuantity.errors;
-
-  late Validator<ReceiveInputPageState> _validatorForMRP;
-  bool get hasErrorsForMRP => this._validatorForMRP.hasErrors;
-  ValidationErrors get errorsForMRP => this._validatorForMRP.errors;
-  // bool get isNewLineItem => this._lineItemManagementService.isNewLineItem;
+  late Validator<ReceiveInputPageState> _validator;
+  bool get hasErrors => this._validator.hasErrors;
+  ValidationErrors get errors => this._validator.errors;
 
   ReceiveInputPageState() : super() {
-    this._productName = _lineItem.productName!;
-    this._createValidatorForProductName();
-    this.onStateChange(() {
-      this._validate();
-    });
-    this._quantity = _lineItem.quantity as Double;
-    this._createValidatorForQuantity();
-    this.onStateChange(() {
-      this._validate();
-    });
-    this._mrp = _lineItem.mrp as Double;
-    this._createValidatorForMRP();
+    this._productName = _lineItem.productName;
+    this._quantity = _lineItem.quantity;
+    this._mrp = _lineItem.mrp;
+    this._createValidator();
     this.onStateChange(() {
       this._validate();
     });
@@ -61,52 +42,37 @@ class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
   }
 
   void submit() {
-    this._validatorForProductName.enable();
-    this._validatorForQuantity.enable();
-    this._validatorForMRP.enable();
+    this._validator.enable();
     if (!this._validate()) {
       this.triggerStateChange();
       return;
     }
-
-    // this._lineItem.productName(this._productName);
-    // this._scopedNavigator.pushNamed(Routes.manageTodoDescription);
+    this._lineItem.setProductName(this._productName);
+    this._lineItem.setQuantity(this._quantity);
+    this._lineItem.setMRP(this._mrp);
+    this._navigator.pop();
   }
 
   bool _validate() {
-    this._validatorForProductName.validate(this);
-    this._validatorForQuantity.validate(this);
-    this._validatorForMRP.validate(this);
-    return (this._validatorForProductName.isValid &&
-        this._validatorForQuantity.isValid &&
-        this._validatorForMRP.isValid);
+    this._validator.validate(this);
+    return this._validator.isValid;
   }
 
-  void _createValidatorForProductName() {
-    this._validatorForProductName = Validator(disabled: true);
+  void _createValidator() {
+    this._validator = Validator(disabled: true);
 
     this
-        ._validatorForProductName
-        .prop("Product name", (t) => t.productName)
+        ._validator
+        .prop("productName", (t) => t.productName)
         .isRequired()
         .withMessage(message: "Product name required");
-  }
-
-  void _createValidatorForQuantity() {
-    this._validatorForQuantity = Validator(disabled: true);
-
     this
-        ._validatorForQuantity
+        ._validator
         .prop("quantity", (t) => t.quantity)
         .isRequired()
         .withMessage(message: "Quantity name required");
-  }
-
-  void _createValidatorForMRP() {
-    this._validatorForMRP = Validator(disabled: true);
-
     this
-        ._validatorForMRP
+        ._validator
         .prop("MRP", (t) => t.mrp)
         .isRequired()
         .withMessage(message: "MRP required");

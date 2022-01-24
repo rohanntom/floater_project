@@ -3,7 +3,7 @@ import 'package:floater/floater.dart';
 import 'total_sales_page_state.dart';
 
 class TotalSalesPage extends StatefulWidgetBase<TotalSalesPageState> {
-  TotalSalesPage() : super(() => TotalSalesPageState());
+  TotalSalesPage() : super(TotalSalesPageState.new);
 
   @override
   Widget build(BuildContext context) {
@@ -11,44 +11,44 @@ class TotalSalesPage extends StatefulWidgetBase<TotalSalesPageState> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         centerTitle: true,
-        title: Text('Sales Report'),
+        title: const Text('Sales Report'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(30.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
+            const Text(
               'Total number of invoices .... ',
               style: TextStyle(fontSize: 24),
             ),
-            Divider(),
-            Text(
+            const Divider(),
+            const Text(
               'Total Sales ....',
               style: TextStyle(fontSize: 24),
             ),
-            Divider(),
-            Text(
+            const Divider(),
+            const Text(
               'Total Tax ....',
               style: TextStyle(fontSize: 24),
             ),
-            Divider(),
-            Text(
+            const Divider(),
+            const Text(
               'Total Revenue ....',
               style: TextStyle(fontSize: 24),
             ),
-            Divider(),
-            SizedBox(
+            const Divider(),
+            const SizedBox(
               height: 100,
             ),
             Center(
               child: ElevatedButton(
                 onPressed: this.state.back,
-                child: Text("Done"),
                 style: ButtonStyle(
                   backgroundColor:
                       MaterialStateProperty.all<Color>(Colors.amber),
                 ),
+                child: const Text("Done"),
               ),
             ),
           ],

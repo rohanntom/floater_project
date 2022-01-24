@@ -1,4 +1,4 @@
-class LineItemDto {
+class LineItem {
   String productName;
   double quantity;
   double mrp;
@@ -11,5 +11,5 @@ class LineItemDto {
     return this.mrp * 0.18;
   }
 
-  LineItemDto(this.productName, this.quantity, this.mrp);
+  LineItem(this.productName, this.quantity, this.mrp);
 }

@@ -3,7 +3,7 @@ import 'package:floater/floater.dart';
 import 'home_page_state.dart';
 
 class HomePage extends StatefulWidgetBase<HomePageState> {
-  HomePage() : super(() => HomePageState());
+  HomePage() : super(HomePageState.new);
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class HomePage extends StatefulWidgetBase<HomePageState> {
       appBar: AppBar(
         backgroundColor: Colors.red,
         centerTitle: true,
-        title: Text(
+        title: const Text(
           'Store Management',
         ),
       ),
@@ -41,11 +41,20 @@ class MenuLine extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         menuLineBuilder(
-            'Create a new invoice', Icons.create_outlined, onCreateInvoiceTap),
+          'Create a new invoice',
+          Icons.create_outlined,
+          onCreateInvoiceTap,
+        ),
         menuLineBuilder(
-            'View total sales', Icons.payments_outlined, onViewTotalSalesTap),
+          'View total sales',
+          Icons.payments_outlined,
+          onViewTotalSalesTap,
+        ),
         menuLineBuilder(
-            'Show all invoices', Icons.view_agenda_outlined, onViewInvoicesTap)
+          'Show all invoices',
+          Icons.view_agenda_outlined,
+          onViewInvoicesTap,
+        ),
       ],
     );
   }
@@ -54,22 +63,22 @@ class MenuLine extends StatelessWidget {
     return Column(
       children: [
         InkWell(
+          onTap: onTap,
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Row(
               children: [
                 Icon(icon),
-                SizedBox(width: 15),
+                const SizedBox(width: 15),
                 Text(
                   title,
-                  style: TextStyle(fontSize: 20),
+                  style: const TextStyle(fontSize: 20),
                 ),
               ],
             ),
           ),
-          onTap: onTap,
         ),
-        Divider(
+        const Divider(
           height: 5,
           thickness: 1,
         ),

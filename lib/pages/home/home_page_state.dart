@@ -4,7 +4,7 @@ import '../routes.dart';
 import 'home_page.dart';
 
 class HomePageState extends WidgetStateBase<HomePage> {
-  HomePageState() : super() {}
+  HomePageState() : super();
   final _navigator = NavigationService.instance.retrieveNavigator("/");
   void onClickCreateInvoice() {
     this._navigator.pushNamed(Routes.createInvoicePage);
