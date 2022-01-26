@@ -28,9 +28,9 @@ class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
   ValidationErrors get errors => this._validator.errors;
 
   ReceiveInputPageState() : super() {
-    this._productName = _lineItem.productName;
-    this._quantity = _lineItem.quantity;
-    this._mrp = _lineItem.mrp;
+    this._productName = _lineItem.productName!;
+    this._quantity = _lineItem.quantity!;
+    this._mrp = _lineItem.mrp!;
     this._createValidator();
     this.onStateChange(() {
       this._validate();
@@ -47,9 +47,7 @@ class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
       this.triggerStateChange();
       return;
     }
-    this._lineItem.setProductName(this._productName);
-    this._lineItem.setQuantity(this._quantity);
-    this._lineItem.setMRP(this._mrp);
+    this._lineItem.addItem(this._productName, this._quantity, this._mrp);
     this._navigator.pop();
   }
 

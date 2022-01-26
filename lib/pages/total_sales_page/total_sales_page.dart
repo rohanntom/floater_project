@@ -24,12 +24,12 @@ class TotalSalesPage extends StatefulWidgetBase<TotalSalesPageState> {
             ),
             const Divider(),
             const Text(
-              'Total Sales ....',
+              'Total Sales', // ${this.state.calcTotalAmount()}',
               style: TextStyle(fontSize: 24),
             ),
             const Divider(),
             const Text(
-              'Total Tax ....',
+              'Total Tax', // ${this.state.calcTotalTax()}',
               style: TextStyle(fontSize: 24),
             ),
             const Divider(),

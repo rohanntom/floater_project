@@ -32,7 +32,8 @@ class MockInvoicesProxy implements Invoice {
   @override
   Future<double> calcTotalAmount() async {
     var totalAmount = 0.0;
-    for (final lineItem in this.lineItems) {
+    for (var i = 0; i < this.lineItems.length; i++) {
+      final lineItem = this.lineItems[i];
       totalAmount = totalAmount + lineItem.amount;
     }
     return totalAmount;
@@ -41,10 +42,10 @@ class MockInvoicesProxy implements Invoice {
   @override
   Future<double> calcTotalTax() async {
     var totalAmountWithTax = 0.0;
-    for (final lineItem in this.lineItems) {
-      totalAmountWithTax = totalAmountWithTax + lineItem.tax;
+    for (var i = 0; i < this.lineItems.length; i++) {
+      final lineItem = this.lineItems[i];
+      totalAmountWithTax = totalAmountWithTax + lineItem.amount;
     }
-
     return totalAmountWithTax;
   }
 }

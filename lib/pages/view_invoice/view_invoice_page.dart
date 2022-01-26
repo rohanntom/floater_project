@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:floater/floater.dart';
 import 'package:store_management/widgets/loading_spinner/loading_spinner.dart';
-import 'view_all_invoices_page_state.dart';
+import 'view_invoice_page_state.dart';
 
-class ViewAllInvoicesPage extends StatefulWidgetBase<ViewAllInvoicesPageState> {
-  ViewAllInvoicesPage() : super(ViewAllInvoicesPageState.new);
+class ViewInvoicePage extends StatefulWidgetBase<ViewInvoicePageState> {
+  ViewInvoicePage() : super(ViewInvoicePageState.new);
 
   @override
   Widget build(BuildContext context) {

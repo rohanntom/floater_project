@@ -1,11 +1,11 @@
 import 'package:floater/floater.dart';
 import 'package:store_management/sdk/proxies/invoice/invoice.dart';
 import 'package:store_management/sdk/proxies/invoice/invoice_dto.dart';
-import 'package:store_management/sdk/proxies/invoice/mock_invoices_proxy.dart';
+import 'package:store_management/sdk/proxies/invoice/mock_invoice_proxy.dart';
 import 'package:uuid/uuid.dart';
-import 'invoice_service.dart';
+import 'invoices_service.dart';
 
-class MockInvoiceService implements InvoiceService {
+class MockInvoicesService implements InvoicesService {
   final List<Invoice> _allInvoices = [];
   var uuid = const Uuid();
 

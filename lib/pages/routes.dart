@@ -1,7 +1,7 @@
 import 'package:floater/floater.dart';
 import 'package:store_management/pages/manage_invoice/invoice/invoice.dart';
 import 'package:store_management/pages/splash/splash_page.dart';
-import 'package:store_management/pages/view_all_invoices/view_all_invoices_page.dart';
+import 'package:store_management/pages/view_invoice/view_invoice_page.dart';
 import 'home/home_page.dart';
 import 'manage_invoice/invoice_complete_page/invoice_complete_page.dart';
 import 'manage_invoice/manage_invoice_page/manage_invoice_page.dart';
@@ -11,10 +11,10 @@ import 'total_sales_page/total_sales_page.dart';
 abstract class Routes {
   static const splash = "/splash";
   static const home = "/home";
-  static const createInvoicePage = "/invoice";
   static const manageInvoicePage = "/manageInvoice";
-  static const receiveInputPage = '/receiveInput';
-  static const invoiceCompletePage = '/invoiceComplete';
+  static const createInvoicePage = "/manageInvoice/invoice";
+  static const receiveInputPage = '/manageInvoice/receiveInputPage';
+  static const invoiceCompletePage = '/manageInvoice/invoiceComplete';
   static const totalSales = '/totalSales';
   static const viewInvoices = '/viewInvoices';
 
@@ -50,30 +50,9 @@ abstract class Routes {
       )
       ..registerPage(
         Routes.viewInvoices,
-        (routeArgs) => ViewAllInvoicesPage(),
+        (routeArgs) => ViewInvoicePage(),
       );
 
-    //   ..registerPage(
-    //     Routes.viewTodo,
-    //     (routeArgs) => ViewTodoPage(routeArgs["id"]),
-    //     fullscreenDialog: false,
-    //     pageType: PageType.custom,
-    //     customPageRouteBuilder: CustomPageRouteBuilder(
-    //       opaque: false,
-    //       transitionsBuilder: (context, animation, secondaryAnimation, child) {
-    //         final tween = Tween(begin: 0.0, end: 1.0);
-    //         final fadeAnimation = animation.drive(tween);
-    //         return FadeTransition(
-    //           opacity: fadeAnimation,
-    //           child: child,
-    //         );
-    //       },
-    //     ),
-    //   );
-    // ..registerPage(
-    //     Routes.viewTodo, (routeArgs) => ViewTodoPage(routeArgs["id"]));
-
-    // bootstrapping Navigation
     NavigationManager.instance.bootstrap();
   }
 }

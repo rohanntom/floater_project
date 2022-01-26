@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:floater/floater.dart';
-import 'package:store_management/pages/lineItem_tile.dart';
+import 'package:store_management/pages/manage_invoice/invoice/lineItem_tile.dart';
 import 'package:store_management/sdk/models/lineItem.dart';
 import 'package:store_management/widgets/loading_spinner/loading_spinner.dart';
 

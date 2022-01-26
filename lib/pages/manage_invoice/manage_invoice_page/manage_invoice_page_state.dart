@@ -1,4 +1,5 @@
 import 'package:floater/floater.dart';
+import 'package:store_management/pages/manage_invoice/service/invoice_management_service.dart';
 import 'manage_invoice_page.dart';
 
 class ManageInvoicePageState extends WidgetStateBase<ManageInvoicePage> {
@@ -10,5 +11,7 @@ class ManageInvoicePageState extends WidgetStateBase<ManageInvoicePage> {
   set isServiceInitialized(bool value) =>
       (this.._isServiceInitialized = value).triggerStateChange();
 
-  ManageInvoicePageState() : super();
+  ManageInvoicePageState() : super() {
+    this._scope.resolve<InvoiceManagementService>();
+  }
 }
