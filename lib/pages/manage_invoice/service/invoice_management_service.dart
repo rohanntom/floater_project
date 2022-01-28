@@ -1,33 +1,23 @@
 import 'package:floater/floater.dart';
-import 'package:store_management/sdk/models/lineItem.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:store_management/sdk/models/line_item.dart';
 import 'package:store_management/sdk/proxies/invoice/invoice.dart';
-
-import 'package:store_management/sdk/proxies/invoice/invoice_dto.dart';
 import 'package:store_management/sdk/services/invoices_service.dart';
 
-class InvoiceManagementService {
+class InvoiceManagementService extends ChangeNotifier {
   final _invoiceService = ServiceLocator.instance.resolve<InvoicesService>();
-  final _invoice = ServiceLocator.instance.resolve<Invoice>();
-  InvoiceDto? _invoiceDto;
-  List<LineItem> get lineItems => this._invoiceDto!.lineItems;
-  Future<double> get totalAmount => this._invoice.calcTotalAmount();
 
-  String? _productName;
-  String? get productName => this._productName;
-
-  double? _quantity;
-  double? get quantity => this._quantity;
-
-  double? _mrp;
-  double? get mrp => this._mrp;
+  Invoice? _invoice;
+  List<LineItem> get lineItems => this._invoice?.lineItems ?? [];
+  double get totalAmount => this._invoice?.totalAmount ?? 0;
 
   Future<void> addItem(String productName, double quantity, double mrp) async {
-    if (this._invoiceDto!.id == null) {
-      await this._invoiceService.createInvoice(lineItems);
+    if (this._invoice == null) {
+      this._invoice = await this._invoiceService.createInvoice(lineItems);
+      //this.notifyListeners();
     }
-    await this
-        ._invoice
-        .addLineItem(this.productName!, this.quantity!, this.mrp!);
+    await this._invoice!.addLineItem(productName, quantity, mrp);
+    this.notifyListeners();
     return;
   }
 }

@@ -1,9 +1,9 @@
-import 'package:store_management/sdk/models/lineItem.dart';
+import 'package:store_management/sdk/models/line_item.dart';
 
 class InvoiceDto {
-  String id;
+  String invoiceId;
   DateTime date;
   List<LineItem> lineItems;
 
-  InvoiceDto(this.id, this.date, this.lineItems);
+  InvoiceDto(this.invoiceId, this.date, this.lineItems);
 }

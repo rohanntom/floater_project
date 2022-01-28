@@ -7,8 +7,7 @@ class Shell extends StatelessWidgetBase {
   Widget build(BuildContext context) {
     return ScopedNavigator(
       "/",
-      //initialRoute: Routes.splash,
-      initialRoute: Routes.receiveInputPage,
+      initialRoute: Routes.splash,
     );
   }
 }

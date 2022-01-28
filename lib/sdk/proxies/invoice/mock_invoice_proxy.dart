@@ -1,4 +1,5 @@
-import 'package:store_management/sdk/models/lineItem.dart';
+import 'package:flutter/cupertino.dart';
+import 'package:store_management/sdk/models/line_item.dart';
 
 import 'invoice.dart';
 import 'invoice_dto.dart';
@@ -9,7 +10,7 @@ class MockInvoicesProxy implements Invoice {
   MockInvoicesProxy(this._invoiceDto);
 
   @override
-  String get id => this._invoiceDto.id;
+  String get invoiceId => this._invoiceDto.invoiceId;
 
   @override
   DateTime get date => this._invoiceDto.date;
@@ -25,12 +26,13 @@ class MockInvoicesProxy implements Invoice {
   ) async {
     final newLineItem = LineItem(productName, quantity, mrp);
     final newLineItemList = [...this.lineItems, newLineItem];
-    final newInvoiceDto = InvoiceDto(this.id, this.date, newLineItemList);
+    final newInvoiceDto =
+        InvoiceDto(this.invoiceId, this.date, newLineItemList);
     this._invoiceDto = newInvoiceDto;
   }
 
   @override
-  Future<double> calcTotalAmount() async {
+  double get totalAmount {
     var totalAmount = 0.0;
     for (var i = 0; i < this.lineItems.length; i++) {
       final lineItem = this.lineItems[i];
@@ -40,12 +42,12 @@ class MockInvoicesProxy implements Invoice {
   }
 
   @override
-  Future<double> calcTotalTax() async {
-    var totalAmountWithTax = 0.0;
+  double get totalTax {
+    var totalTax = 0.0;
     for (var i = 0; i < this.lineItems.length; i++) {
       final lineItem = this.lineItems[i];
-      totalAmountWithTax = totalAmountWithTax + lineItem.amount;
+      totalTax = totalTax + lineItem.tax;
     }
-    return totalAmountWithTax;
+    return totalTax;
   }
 }

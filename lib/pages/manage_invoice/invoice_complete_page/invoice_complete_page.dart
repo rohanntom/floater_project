@@ -18,9 +18,9 @@ class InvoiceCompletePage extends StatefulWidgetBase<InvoiceCompletePageState> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
-              'Your total is........ ',
-              style: TextStyle(fontSize: 22),
+            Text(
+              'Your total is \$${this.state.totalAmount.toStringAsFixed(2)}',
+              style: const TextStyle(fontSize: 22),
             ),
             const Text(
               '\nThanks for shopping.',

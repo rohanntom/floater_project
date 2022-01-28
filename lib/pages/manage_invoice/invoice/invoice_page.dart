@@ -1,18 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:floater/floater.dart';
-import 'package:store_management/pages/manage_invoice/invoice/lineItem_tile.dart';
-import 'package:store_management/sdk/models/lineItem.dart';
+import 'package:store_management/pages/manage_invoice/invoice/line_item_tile.dart';
+import 'package:store_management/sdk/models/line_item.dart';
 import 'package:store_management/widgets/loading_spinner/loading_spinner.dart';
-
 import 'bottom_container.dart';
-import 'invoice_state.dart';
+import 'invoice_page_state.dart';
 
 class InvoicePage extends StatefulWidgetBase<InvoicePageState> {
   InvoicePage() : super(InvoicePageState.new);
 
   @override
   Widget build(BuildContext context) {
-    // this.state.currentTab
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -21,6 +19,10 @@ class InvoicePage extends StatefulWidgetBase<InvoicePageState> {
           style: TextStyle(fontSize: 22),
         ),
         backgroundColor: Colors.red,
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: this.state.back,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: this.state.onClick,
@@ -33,7 +35,10 @@ class InvoicePage extends StatefulWidgetBase<InvoicePageState> {
           this._buildBody(context),
           Positioned(
             bottom: 0,
-            child: BottomContainer(),
+            child: BottomContainer(
+              totalAmount: this.state.totalAmount,
+              onConfirmPressed: this.state.onConfirmedPressed,
+            ),
           ),
         ],
       ),

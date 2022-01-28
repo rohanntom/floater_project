@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:floater/floater.dart';
-import 'bottom_container_state.dart';
 
-class BottomContainer extends StatefulWidgetBase<BottomContainerState> {
-  BottomContainer() : super(BottomContainerState.new);
+class BottomContainer extends StatelessWidgetBase {
+  final double totalAmount;
+  final VoidCallback onConfirmPressed;
+  const BottomContainer({
+    required this.totalAmount,
+    required this.onConfirmPressed,
+  });
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -17,20 +21,21 @@ class BottomContainer extends StatefulWidgetBase<BottomContainerState> {
             Padding(
               padding: const EdgeInsets.all(5.0),
               child: Row(
-                children: const [
-                  Text(
+                children: [
+                  const Text(
                     'Total: ',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                   ),
                   Text(
-                    '0.00',
-                    style: TextStyle(fontSize: 20),
+                    '\$${this.totalAmount.toStringAsFixed(2)}',
+                    style: const TextStyle(fontSize: 20),
                   ),
                 ],
               ),
             ),
             const Spacer(),
             InkWell(
+              onTap: this.totalAmount == 0.0 ? null : this.onConfirmPressed,
               child: Container(
                 decoration: BoxDecoration(
                   color: Colors.red,
@@ -55,7 +60,6 @@ class BottomContainer extends StatefulWidgetBase<BottomContainerState> {
                   ),
                 ),
               ),
-              onTap: () {},
             ),
           ],
         ),

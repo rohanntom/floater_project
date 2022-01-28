@@ -7,7 +7,7 @@ class HomePageState extends WidgetStateBase<HomePage> {
   HomePageState() : super();
   final _navigator = NavigationService.instance.retrieveNavigator("/");
   void onClickCreateInvoice() {
-    this._navigator.pushNamed(Routes.createInvoicePage);
+    this._navigator.pushNamed(Routes.manageInvoicePage);
   }
 
   void onClickTotalSales() {

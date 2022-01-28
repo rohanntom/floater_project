@@ -1,5 +1,5 @@
 import 'package:floater/floater.dart';
-import 'package:store_management/pages/manage_invoice/invoice/invoice.dart';
+import 'package:store_management/pages/manage_invoice/invoice/invoice_page.dart';
 import 'package:store_management/pages/splash/splash_page.dart';
 import 'package:store_management/pages/view_invoice/view_invoice_page.dart';
 import 'home/home_page.dart';
@@ -12,7 +12,7 @@ abstract class Routes {
   static const splash = "/splash";
   static const home = "/home";
   static const manageInvoicePage = "/manageInvoice";
-  static const createInvoicePage = "/manageInvoice/invoice";
+  static const invoicePage = "/manageInvoice/invoice";
   static const receiveInputPage = '/manageInvoice/receiveInputPage';
   static const invoiceCompletePage = '/manageInvoice/invoiceComplete';
   static const totalSales = '/totalSales';
@@ -29,7 +29,7 @@ abstract class Routes {
         (routeArgs) => HomePage(),
       )
       ..registerPage(
-        Routes.createInvoicePage,
+        Routes.invoicePage,
         (routeArgs) => InvoicePage(),
       )
       ..registerPage(

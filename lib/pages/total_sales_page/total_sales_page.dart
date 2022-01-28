@@ -18,24 +18,24 @@ class TotalSalesPage extends StatefulWidgetBase<TotalSalesPageState> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Total number of invoices .... ',
-              style: TextStyle(fontSize: 24),
+            Text(
+              'Total number of invoices: ${this.state.invoices?.length ?? 0}',
+              style: const TextStyle(fontSize: 24),
             ),
             const Divider(),
-            const Text(
-              'Total Sales', // ${this.state.calcTotalAmount()}',
-              style: TextStyle(fontSize: 24),
+            Text(
+              'Total Sales: \$${this.state.totalSale}',
+              style: const TextStyle(fontSize: 24),
             ),
             const Divider(),
-            const Text(
-              'Total Tax', // ${this.state.calcTotalTax()}',
-              style: TextStyle(fontSize: 24),
+            Text(
+              'Total Tax: \$${this.state.totalTax}',
+              style: const TextStyle(fontSize: 24),
             ),
             const Divider(),
-            const Text(
-              'Total Revenue ....',
-              style: TextStyle(fontSize: 24),
+            Text(
+              'Total Revenue: \$${this.state.totalRevenue}',
+              style: const TextStyle(fontSize: 24),
             ),
             const Divider(),
             const SizedBox(

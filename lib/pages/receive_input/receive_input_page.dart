@@ -10,10 +10,12 @@ class ReceiveInputPage extends StatefulWidgetBase<ReceiveInputPageState> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("New LineItem"),
+        centerTitle: true,
         leading: IconButton(
-          icon: const Icon(Icons.chevron_left),
+          icon: const Icon(Icons.arrow_back),
           onPressed: this.state.back,
         ),
+        backgroundColor: Colors.red,
       ),
       body: SafeArea(
         child: Padding(
@@ -29,37 +31,46 @@ class ReceiveInputPage extends StatefulWidgetBase<ReceiveInputPageState> {
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
-                  errorText:
-                      this.state.errors.getError("product name required"),
+                  errorText: this.state.errors.getError("productName"),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
               TextFormField(
-                initialValue: this.state.quantity as String,
-                onChanged: (v) => this.state.quantity = v as double,
+                //initialValue: this.state.quantity.toString(),
+                onChanged: (v) => this.state.quantity = double.parse(v),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: "Quantity",
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
-                  errorText: this.state.errors.getError("quantity required"),
+                  errorText: this.state.errors.getError("quantity"),
                 ),
               ),
+              const SizedBox(
+                height: 20,
+              ),
               TextFormField(
-                initialValue: this.state.mrp as String,
-                onChanged: (v) => this.state.mrp = v as double,
+                //initialValue: this.state.mrp.toString(),
+                onChanged: (v) => this.state.mrp = double.parse(v),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
                   labelText: "MRP",
                   border: const OutlineInputBorder(
                     borderRadius: BorderRadius.all(Radius.circular(12)),
                   ),
-                  errorText: this.state.errors.getError("mrp required"),
+                  errorText: this.state.errors.getError("mrp"),
                 ),
               ),
               const SizedBox(height: 30),
               ElevatedButton(
                 onPressed: (this.state.hasErrors) ? null : this.state.submit,
+                style: ButtonStyle(
+                  backgroundColor:
+                      MaterialStateProperty.all<Color>(Colors.amber),
+                ),
                 child: const Text("Done"),
               ),
             ],

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:floater/floater.dart';
+import 'package:store_management/sdk/proxies/invoice/invoice.dart';
 import 'package:store_management/widgets/loading_spinner/loading_spinner.dart';
 import 'view_invoice_page_state.dart';
 
@@ -40,24 +41,31 @@ class ViewInvoicePage extends StatefulWidgetBase<ViewInvoicePageState> {
         ),
       );
     }
-    return Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Text(
-            'Invoice',
-            style: Theme.of(context).textTheme.headline6,
+    return ListView.builder(
+      addAutomaticKeepAlives: true,
+      itemCount: this.state.invoices.length,
+      itemBuilder: (context, index) =>
+          this._buildListTile(this.state.invoices[index]),
+    );
+  }
+
+  Widget _buildListTile(Invoice invoice) {
+    return Column(
+      children: [
+        ListTile(
+          title:
+              //  const Text(
+              //   'Invoice',
+              // ),
+              Text(
+            'Invoice ID: ${invoice.invoiceId}',
           ),
-          Text(
-            this.state.invoice.id,
-            style: Theme.of(context).textTheme.bodyText1,
+          subtitle: Text(
+            'Amount: \$${invoice.totalAmount.toStringAsFixed(2)}',
           ),
-          Text(
-            '${this.state.invoice.calcTotalAmount()}',
-          )
-        ],
-      ),
+        ),
+        const Divider(),
+      ],
     );
   }
 }

@@ -1,37 +1,34 @@
 import 'package:floater/floater.dart';
 import 'package:store_management/pages/manage_invoice/service/invoice_management_service.dart';
-
 import '../routes.dart';
 import 'receive_input_page.dart';
 
 class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
-  final _lineItem = NavigationService.instance
+  final _mgmtService = NavigationService.instance
       .retrieveScope(Routes.manageInvoicePage)
       .resolve<InvoiceManagementService>();
-  final _navigator = NavigationService.instance.retrieveNavigator("/");
+  final _navigator =
+      NavigationService.instance.retrieveNavigator(Routes.manageInvoicePage);
 
-  late String _productName;
+  String _productName = "";
   String get productName => this._productName;
   set productName(String value) =>
       (this.._productName = value).triggerStateChange();
 
-  late double _quantity;
+  double _quantity = 0;
   double get quantity => this._quantity;
   set quantity(double value) => (this.._quantity = value).triggerStateChange();
 
-  late double _mrp;
+  double _mrp = 0;
   double get mrp => this._mrp;
   set mrp(double value) => (this.._mrp = value).triggerStateChange();
 
-  late Validator<ReceiveInputPageState> _validator;
+  late final Validator<ReceiveInputPageState> _validator =
+      this._createValidator();
   bool get hasErrors => this._validator.hasErrors;
   ValidationErrors get errors => this._validator.errors;
 
   ReceiveInputPageState() : super() {
-    this._productName = _lineItem.productName!;
-    this._quantity = _lineItem.quantity!;
-    this._mrp = _lineItem.mrp!;
-    this._createValidator();
     this.onStateChange(() {
       this._validate();
     });
@@ -47,32 +44,34 @@ class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
       this.triggerStateChange();
       return;
     }
-    this._lineItem.addItem(this._productName, this._quantity, this._mrp);
+    this._mgmtService.addItem(this._productName, this._quantity, this._mrp);
+    this.triggerStateChange();
     this._navigator.pop();
   }
 
   bool _validate() {
     this._validator.validate(this);
+    print(_validator.errors);
     return this._validator.isValid;
   }
 
-  void _createValidator() {
-    this._validator = Validator(disabled: true);
+  Validator<ReceiveInputPageState> _createValidator() {
+    final validator = Validator<ReceiveInputPageState>(disabled: true);
 
-    this
-        ._validator
+    validator
         .prop("productName", (t) => t.productName)
         .isRequired()
         .withMessage(message: "Product name required");
-    this
-        ._validator
+    validator
         .prop("quantity", (t) => t.quantity)
         .isRequired()
-        .withMessage(message: "Quantity name required");
-    this
-        ._validator
-        .prop("MRP", (t) => t.mrp)
+        .withMessage(message: "Quantity required")
+        .hasMinValue(1);
+    validator
+        .prop("mrp", (t) => t.mrp)
         .isRequired()
-        .withMessage(message: "MRP required");
+        .withMessage(message: "MRP required")
+        .hasMinValue(0.01);
+    return validator;
   }
 }
