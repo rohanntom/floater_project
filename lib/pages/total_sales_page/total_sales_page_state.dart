@@ -3,8 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:store_management/sdk/proxies/invoice/invoice.dart';
 import 'package:store_management/sdk/services/invoices_service.dart';
 import 'total_sales_page.dart';
-// import 'package:store_management/sdk/services/invoices_service.dart';
-// import 'package:store_management/sdk/proxies/invoice/invoice.dart';
 
 class TotalSalesPageState extends WidgetStateBase<TotalSalesPage> {
   final _navigator = NavigationService.instance.retrieveNavigator("/");

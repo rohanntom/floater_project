@@ -4,7 +4,8 @@ import '../../routes.dart';
 import 'manage_invoice_page_state.dart';
 
 class ManageInvoicePage extends StatefulWidgetBase<ManageInvoicePageState> {
-  ManageInvoicePage() : super(ManageInvoicePageState.new);
+  ManageInvoicePage(String? invoiceId)
+      : super(() => ManageInvoicePageState(invoiceId));
 
   @override
   Widget build(BuildContext context) {

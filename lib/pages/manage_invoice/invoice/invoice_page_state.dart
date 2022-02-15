@@ -1,6 +1,7 @@
 import 'package:floater/floater.dart';
 import 'package:store_management/pages/manage_invoice/service/invoice_management_service.dart';
 import 'package:store_management/sdk/models/line_item.dart';
+import 'package:store_management/sdk/proxies/invoice/invoice.dart';
 import '../../routes.dart';
 import 'invoice_page.dart';
 
@@ -11,19 +12,22 @@ class InvoicePageState extends WidgetStateBase<InvoicePage> {
   final _invoiceMgmtService = NavigationService.instance
       .retrieveScope(Routes.manageInvoicePage)
       .resolve<InvoiceManagementService>();
+
+  late Invoice invoice;
+
   InvoicePageState() : super() {
     onInitState(() {
       this.init();
     });
   }
 
-  void init() {
+  Future<void> init() async {
     _invoiceMgmtService.addListener(listener);
     setState(() {});
   }
 
   void listener() {
-    print('${this._invoiceMgmtService.lineItems.length}');
+    // print('${this._invoiceMgmtService.lineItems.length}');
     this.triggerStateChange();
   }
 
@@ -45,7 +49,5 @@ class InvoicePageState extends WidgetStateBase<InvoicePage> {
 
   void back() {
     this._rootNavigator.pop();
-    // this.dispose();
-    // this._invoiceMgmtService.dispose();
   }
 }

@@ -11,10 +11,17 @@ class InvoiceManagementService extends ChangeNotifier {
   List<LineItem> get lineItems => this._invoice?.lineItems ?? [];
   double get totalAmount => this._invoice?.totalAmount ?? 0;
 
+  Future<void> getInvoice(String? invoiceId) async {
+    if (invoiceId != null) {
+      this._invoice = await this._invoiceService.getInvoice(invoiceId);
+      this.notifyListeners();
+      return;
+    }
+  }
+
   Future<void> addItem(String productName, double quantity, double mrp) async {
     if (this._invoice == null) {
       this._invoice = await this._invoiceService.createInvoice(lineItems);
-      //this.notifyListeners();
     }
     await this._invoice!.addLineItem(productName, quantity, mrp);
     this.notifyListeners();

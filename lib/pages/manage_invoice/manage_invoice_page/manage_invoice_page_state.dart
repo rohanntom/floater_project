@@ -11,7 +11,11 @@ class ManageInvoicePageState extends WidgetStateBase<ManageInvoicePage> {
   set isServiceInitialized(bool value) =>
       (this.._isServiceInitialized = value).triggerStateChange();
 
-  ManageInvoicePageState() : super() {
-    this._scope.resolve<InvoiceManagementService>();
+  ManageInvoicePageState(String? invoiceId) : super() {
+    this
+        ._scope
+        .resolve<InvoiceManagementService>()
+        .getInvoice(invoiceId)
+        .then((_) => this.isServiceInitialized = true);
   }
 }

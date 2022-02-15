@@ -38,7 +38,6 @@ class ReceiveInputPage extends StatefulWidgetBase<ReceiveInputPageState> {
                 height: 20,
               ),
               TextFormField(
-                //initialValue: this.state.quantity.toString(),
                 onChanged: (v) => this.state.quantity = double.parse(v),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(
@@ -53,7 +52,6 @@ class ReceiveInputPage extends StatefulWidgetBase<ReceiveInputPageState> {
                 height: 20,
               ),
               TextFormField(
-                //initialValue: this.state.mrp.toString(),
                 onChanged: (v) => this.state.mrp = double.parse(v),
                 keyboardType: TextInputType.number,
                 decoration: InputDecoration(

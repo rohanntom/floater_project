@@ -1,3 +1,4 @@
+import 'package:floater/floater.dart';
 import 'package:store_management/sdk/models/line_item.dart';
 import 'package:store_management/sdk/proxies/invoice/invoice.dart';
 import 'package:store_management/sdk/proxies/invoice/invoice_dto.dart';
@@ -29,15 +30,10 @@ class MockInvoicesService implements InvoicesService {
   }
 
   @override
-  Future<Invoice> getInvoice(String id) {
-    // TODO: implement getInvoice
-    throw UnimplementedError();
-  }
+  Future<Invoice> getInvoice(String invoiceId) async {
+    given(invoiceId, "invoiceId").ensure((t) => t.isNotEmptyOrWhiteSpace);
+    //await Future.delayed(const Duration(seconds: 1));
 
-  // @override
-  // Future<Invoice> getInvoice(String invoiceId) async {
-  //   given(invoiceId, "invoiceId").ensure((t) => t.isNotEmptyOrWhiteSpace);
-  //   await Future.delayed(const Duration(seconds: 1));
-  //   return this._allInvoices.find((e) => e.invoiceId == invoiceId);
-  // }
+    return this._allInvoices.find((e) => e.invoiceId == invoiceId)!;
+  }
 }

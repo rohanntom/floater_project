@@ -51,7 +51,7 @@ class ReceiveInputPageState extends WidgetStateBase<ReceiveInputPage> {
 
   bool _validate() {
     this._validator.validate(this);
-    print(_validator.errors);
+    // print(_validator.errors);
     return this._validator.isValid;
   }
 
